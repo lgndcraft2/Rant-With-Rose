@@ -11,6 +11,7 @@ from langchain.agents import create_tool_calling_agent, AgentExecutor
 from tools import search_tool, wiki_tool, save_tool
 from sqlalchemy import or_
 from datetime import datetime
+import os
 
 
 
@@ -20,8 +21,12 @@ load_dotenv()
 
 # --- Flask App ---
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "bitchsupersecretkeygues"
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///chat.db"
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
+uri = os.getenv("DATABASE_URL")
+if uri and uri.startswith("postgres://"):
+    uri = uri.replace("postgres://", "postgresql+psycopg2://", 1)
+
+app.config["SQLALCHEMY_DATABASE_URI"] = uri
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
