@@ -34,7 +34,7 @@ db = SQLAlchemy(app)
 # --- Message Model for Persistence ---
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.String(50), nullable=False)  # user id or session id
+    user_id = db.Column(db.Integer, nullable=False)  # user id or session id
     role = db.Column(db.String(10), nullable=False)  # "human" or "ai"
     content = db.Column(db.Text, nullable=False)
     topic = db.Column(db.String(200))   # only for AI replies
