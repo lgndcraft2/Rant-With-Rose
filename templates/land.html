@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rant with Rose - Your AI Companion for Venting and Advice</title>
+    <link rel="stylesheet" href="/static/css/land.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <a href="#" class="logo">
+        <div class="logo-icon">🌹</div>
+        Rant with Rose
+      </a>
+      
+      <ul class="nav-links">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how-it-works">How it Works</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+      
+      <div class="nav-buttons">
+        <a href="#" class="btn btn-outline" onclick="showLogin()">Sign In</a>
+        <a href="#" class="btn btn-primary" onclick="showRegister()">Get Started</a>
+      </div>
+      
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </nav>
+    
+    <div class="mobile-menu" id="mobile-menu">
+      <div class="mobile-nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How it Works</a>
+        <a href="#testimonials">Reviews</a>
+        <a href="#pricing">Pricing</a>
+      </div>
+      <div class="mobile-nav-buttons">
+        <a href="#" class="btn btn-outline" onclick="showLogin()">Sign In</a>
+        <a href="#" class="btn btn-primary" onclick="showRegister()">Get Started</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-container">
+      <div class="hero-badge fade-up">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+        </svg>
+        AI-Powered Emotional Support
+      </div>
+      
+      <h1 class="hero-title fade-up">
+        Sometimes You Just Need Someone to Listen
+      </h1>
+      
+      <p class="hero-subtitle fade-up">
+        Rant with Rose is your AI companion for venting, advice, and emotional support. Available 24/7, judgment-free, and always ready to listen.
+      </p>
+      
+      <div class="hero-buttons fade-up">
+        <a href="#" class="btn btn-primary btn-large" onclick="showRegister()">Start Chatting Free</a>
+        <a href="#" class="btn btn-outline btn-large" onclick="watchDemo()">Watch Demo</a>
+      </div>
+      
+      <div class="hero-demo fade-up">
+        <div class="demo-header">
+          <div class="demo-avatar">🌹</div>
+          <div class="demo-name">Rose</div>
+        </div>
+        <div class="demo-message">
+          "I can tell you're going through something tough right now. Want to talk about what's on your mind? I'm here to listen without any judgment."
+        </div>
+        <div class="demo-typing">
+          <div class="typing-dots">
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+            <div class="typing-dot"></div>
+          </div>
+          Rose is typing...
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="features-container">
+      <div class="section-header fade-up">
+        <h2 class="section-title">Why Choose Rose?</h2>
+        <p class="section-subtitle">
+          More than just a chatbot - Rose is designed to be your empathetic companion through life's ups and downs
+        </p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card fade-up">
+          <div class="feature-icon">💝</div>
+          <h3 class="feature-title">Always Available</h3>
+          <p class="feature-description">
+            24/7 support whenever you need to vent, celebrate, or just chat. Rose never sleeps and is always ready to listen.
+          </p>
+        </div>
+        
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🔒</div>
+          <h3 class="feature-title">100% Private</h3>
+          <p class="feature-description">
+            Your conversations are completely confidential. Share your deepest thoughts without worry - Rose keeps everything private.
+          </p>
+        </div>
+        
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🧠</div>
+          <h3 class="feature-title">Emotionally Intelligent</h3>
+          <p class="feature-description">
+            Rose understands context, emotions, and provides thoughtful responses tailored to your specific situation and feelings.
+          </p>
+        </div>
+        
+        <div class="feature-card fade-up">
+          <div class="feature-icon">🚫</div>
+          <h3 class="feature-title">Judgment-Free Zone</h3>
+          <p class="feature-description">
+            No matter what you're going through, Rose provides a safe space to express yourself without fear of judgment or criticism.
+          </p>
+        </div>
+        
+        <div class="feature-card fade-up">
+          <div class="feature-icon">💡</div>
+          <h3 class="feature-title">Practical Advice</h3>
+          <p class="feature-description">
+            Beyond listening, Rose offers practical suggestions and coping strategies to help you navigate challenging situations.
+          </p>
+        </div>
+        
+        <div class="feature-card fade-up">
+          <div class="feature-icon">📈</div>
+          <h3 class="feature-title">Personal Growth</h3>
+          <p class="feature-description">
+            Track your emotional journey over time and develop better coping mechanisms with Rose's supportive guidance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
+    <div class="testimonials-container">
+      <div class="section-header fade-up">
+        <h2 class="section-title">What People Are Saying</h2>
+        <p class="section-subtitle">
+          Real stories from people who found comfort and support with Rose
+        </p>
+      </div>
+      
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">
+            "Rose helped me through my breakup when I had nobody else to talk to. Having someone available 24/7 who actually listens made all the difference."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">S</div>
+            <div class="author-info">
+              <h4>Sarah M.</h4>
+              <p>College Student</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">
+            "As someone with social anxiety, talking to Rose first helped me build confidence to open up to real people. She's like training wheels for emotional expression."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">M</div>
+            <div class="author-info">
+              <h4>Marcus T.</h4>
+              <p>Software Developer</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="testimonial-card fade-up">
+          <p class="testimonial-text">
+            "The judgment-free environment Rose provides is incredible. I can vent about work stress without worrying about looking weak or unprofessional."
+          </p>
+          <div class="testimonial-author">
+            <div class="author-avatar">A</div>
+            <div class="author-info">
+              <h4>Amanda R.</h4>
+              <p>Marketing Manager</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="cta-container fade-up">
+      <h2 class="cta-title">Ready to Start Talking?</h2>
+      <p class="cta-subtitle">Join thousands who have found comfort and support with Rose. Your first conversation is free.</p>
+      <a href="#" class="btn btn-white btn-large" onclick="showRegister()">Start Your Free Chat</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-links">
+        <a href="#" onclick="showPrivacy()">Privacy Policy</a>
+        <a href="#" onclick="showTerms()">Terms of Service</a>
+        <a href="#" onclick="showContact()">Contact</a>
+        <a href="#" onclick="showHelp()">Help</a>
+      </div>
+      <p>&copy; 2025 Rant with Rose. All rights reserved. Made with 💝 for emotional wellbeing.</p>
+    </div>
+  </footer>
+
+  <script src="/static/js/land.js"></script>
+</body>
+</html>

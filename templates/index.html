@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/css/styles.css">
+  <title>Rant with Rose</title>
+</head>
+<body>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <div class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-title">
+        Rant with Rose
+      </div>
+    </div>
+    <div class="chat-list">
+      <div class="chat-item username" id="username"></div>
+      <div class="chat-item active" onclick="LogOut()">Log Out</div>
+      <!-- <div class="chat-item">Previous chat #2</div> -->
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="chat-header">
+      <button class="mobile-menu-btn" onclick="toggleSidebar()" id="mobile-menu-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+      <div class="status-indicator"></div>
+      <h1>Rose</h1>
+    </div>
+    
+    <div class="chat-messages" id="chat-messages">
+      <!-- <div class="message bot">
+        <div class="message-header">
+          <div class="message-author">Rose</div>
+          <div class="message-time">Just now</div>
+        </div>
+        <div class="message-content">Hey! I'm Rose. I'm here to help with creative ideas, harmless pranks, and general mischief. What would you like to explore today?</div>
+      </div> -->
+    </div>
+    
+    <div class="chat-input-container">
+      <div class="chat-input">
+        <div class="input-wrapper">
+          <textarea id="user-input" placeholder="Message Rose..." rows="1"></textarea>
+        </div>
+        <button class="send-button" onclick="sendMessage()" id="send-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"></line>
+            <polygon points="22,2 15,22 11,13 2,9 22,2"></polygon>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+<script src="static/js/scripts.js"></script>
+</body>
+</html>
