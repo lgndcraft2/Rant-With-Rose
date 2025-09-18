@@ -6,6 +6,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from pydantic import BaseModel, Field
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
+from langchain.output_parsers import OutputFixingParser
 from langchain_core.output_parsers import PydanticOutputParser
 from langchain.agents import create_tool_calling_agent, AgentExecutor
 from tools import search_tool, wiki_tool, save_tool
@@ -77,8 +78,9 @@ class ResponseSchema(BaseModel):
 
 
 # --- LLM setup ---
-llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=1.0, max_output_tokens=1500)
+llm = ChatGoogleGenerativeAI(model="gemini-2.5-flash", temperature=0.4, max_output_tokens=1500)
 parser = PydanticOutputParser(pydantic_object=ResponseSchema)
+parser = OutputFixingParser.from_llm(parser=parser, llm=llm)
 
 
 # --- Prompt Template ---
@@ -297,7 +299,11 @@ def chat():
             "query": query,
             "chat_history": chat_history
         })
-        response = parser.parse(raw_response["output"])
+        try:
+            response = parser.parse(raw_response["output"])
+        except Exception as e:
+            app.logger.error(f"Parser failed: {e}\nRaw output: {raw_response}")
+            return jsonify({"error": "Model gave bad output, try again."}), 500
 
         # Save user message
         new_msg = Message(user_id=user_id, role="human", content=query)
