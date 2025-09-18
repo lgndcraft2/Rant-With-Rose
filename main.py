@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import PydanticOutputParser
@@ -12,6 +12,7 @@ from tools import search_tool, wiki_tool, save_tool
 from sqlalchemy import or_
 from datetime import datetime
 import os
+from typing import Optional, List
 
 
 
@@ -71,8 +72,8 @@ class ResponseSchema(BaseModel):
     summary: str
     detailed_summary: str
     reply: str
-    source: list[str]
-    tools: list[str]
+    source: Optional[list[str]] = Field(default_factory=list)  # Sources used, if any
+    tools: Optional[list[str]] = Field(default_factory=list)   # Tools used, if any
 
 
 # --- LLM setup ---
@@ -160,7 +161,7 @@ prompt = ChatPromptTemplate.from_messages(
 
 
 # --- Tools ---
-tools = [search_tool, wiki_tool, save_tool]
+tools = [search_tool, wiki_tool]
 
 
 # --- Create Agent ---
