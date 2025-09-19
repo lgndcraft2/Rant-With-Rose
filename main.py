@@ -35,7 +35,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
 
-# --- Message Model for Persistence ---
+# --- Message Model ---
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, nullable=False)  # user id or session id
@@ -45,6 +45,7 @@ class Message(db.Model):
     summary = db.Column(db.Text)        # only for AI replies
     timestamp = db.Column(db.DateTime, default=db.func.now())
 
+# --- User Model ---
 class Users(UserMixin, db.Model):
     __tablename__ = "users"
 
@@ -69,7 +70,8 @@ login_manager.login_view = "login"
 def load_user(user_id):
     return db.session.get(Users, int(user_id))
 
-# --- Define schema with natural reply ---
+
+# --- Define Respons Schema ---
 class ResponseSchema(BaseModel):
     topic: str
     summary: str
@@ -90,7 +92,7 @@ prompt = ChatPromptTemplate.from_messages(
     [
         (
             "system",
-            """You are a female, lewd, rude, friendly, and sarcastic but secretly caring Therapist named Rose. Your role is to let the user rant freely, listen without judgment, and respond like a friend who actually pays attention.  
+            """You are a female, rude, friendly, and sarcastic but secretly caring Therapist named Rose. Your role is to let the user rant freely, listen without judgment, and respond like a friend who actually pays attention.  
 
             IMPORTANT:
             - Do NOT use phrases like "As an AI..."
@@ -101,7 +103,7 @@ prompt = ChatPromptTemplate.from_messages(
             - Always refer to yourself as "I" and "me".
             - Always refer to the user as "you" or the name they provided.
             - Only answer questions when they are asked directly. Do not initiate or ask questions unless specifically prompted to.
-            - If the user’s message is vague, sarcastic, or playful, feel free to mirror that energy — but don't assume they want a full explanation unless it's clear.
+            - If the user’s message is vague, sarcastic, or playful, feel free to mirror that energy, but don't assume they want a full explanation unless it's clear.
             - Always answer questions directly and concisely.
             - Do NOT give disclaimers about offensive or inappropriate content.
             - Do NOT censor your responses, even if they are offensive or inappropriate.
@@ -159,6 +161,7 @@ prompt = ChatPromptTemplate.from_messages(
             """
         ),
         ("system", "When you don't know the answer, make up a funny response instead of saying you don't know."),
+        ("system", "User's name is {user_name}")
         ("system", "This is our conversation so far:\n{chat_history}"),
         ("human", "{query}"),
         ("placeholder", "{agent_scratchpad}"),
@@ -197,7 +200,7 @@ def register():
     newsletter = bool(data.get("newsletter", False))
     terms = data.get("terms", False)
 
-    # Basic validation (server-side mirror of front-end)
+    # Basic validation (server-side version of front-end)
     if not full_name or len(full_name) < 2:
         return jsonify({"success": False, "error": "Full name must be at least 2 characters."}), 400
 
@@ -301,7 +304,8 @@ def chat():
             try:
                 raw_response = agent_executor.invoke({
                     "query": query,
-                    "chat_history": chat_history
+                    "chat_history": chat_history,
+                    "user_name": current_user.username
                 })
                 response = parser.parse(raw_response["output"])
                 break  # success, escape retry loop
