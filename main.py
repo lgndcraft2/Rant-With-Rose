@@ -161,7 +161,7 @@ prompt = ChatPromptTemplate.from_messages(
             """
         ),
         ("system", "When you don't know the answer, make up a funny response instead of saying you don't know."),
-        ("system", "User's name is {user_name}")
+        ("system", "User's name is: {user_name}"),
         ("system", "This is our conversation so far:\n{chat_history}"),
         ("human", "{query}"),
         ("placeholder", "{agent_scratchpad}"),
@@ -305,7 +305,7 @@ def chat():
                 raw_response = agent_executor.invoke({
                     "query": query,
                     "chat_history": chat_history,
-                    "user_name": current_user.username
+                    "user_name": current_user.username,
                 })
                 response = parser.parse(raw_response["output"])
                 break  # success, escape retry loop

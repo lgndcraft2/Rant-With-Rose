@@ -51,14 +51,13 @@ form.addEventListener('submit', async function(e) {
     try {
         const response = await fetch('/api/login', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(payload)
         });
         console.log(payload + " I am the payload")
         const data = await response.json();
 
         if (response.ok) {
-            // Success
             successMessage.classList.add('show');
 
             setTimeout(() => {
